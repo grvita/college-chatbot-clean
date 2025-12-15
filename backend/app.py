@@ -1,6 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-from chatbot_logic import find_response
+from backend.chatbot_logic import find_response
+import os
+
 
 app = Flask(__name__)
 CORS(app)
