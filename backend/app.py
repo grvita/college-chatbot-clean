@@ -7,6 +7,33 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+# ROOT PAGE (for browser testing)
+@app.route('/')
+def index():
+    return """
+    <!DOCTYPE html>
+    <html>
+    <head><title>College Chatbot</title></head>
+    <body>
+        <h1>🎓 College Chatbot Live!</h1>
+        <p>Backend API is running. Check <a href="/chat">/chat</a> or your frontend.</p>
+    </body>
+    </html>
+    """
+
+# CHATBOT API (your frontend calls this)
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.json
+    user_message = data.get('message', '')
+    response = find_response(user_message)
+    return jsonify({'response': response})
+
+# HEALTH CHECK (Render uses this)
+@app.route('/health')
+def health():
+    return "OK", 200
+
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
