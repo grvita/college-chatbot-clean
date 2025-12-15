@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT-BOT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-card">
+            <div class="header">
+                <img src="assets/MIT.jpg" alt="MIT Logo" class="logo">
+                <div class="header-text">
+                    <h1>MIT-BOT</h1>
+                    <p>Your Intelligent College Assistant</p>
+                </div>
+            </div>
+
+            <div class="chat-area" id="chatArea">
+                <div class="welcome-message">
+                    <div class="bot-message">
+                        Hi! I'm MIT-BOT. Ask me about fees, timings, hostel, contacts, or transport! 🚀
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggestions" id="suggestions">
+                <span class="suggestion-chip" data-question="What are the B.Tech fees?">B.Tech Fees</span>
+                <span class="suggestion-chip" data-question="What are the college timings?">Timings</span>
+                <span class="suggestion-chip" data-question="Do you have hostel facilities?">Hostel</span>
+            </div>
+
+            <!-- This part is missing in your UI -->
+            <div class="input-area">
+                <input type="text" id="messageInput" placeholder="Type your question..." autocomplete="off">
+                <button id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
