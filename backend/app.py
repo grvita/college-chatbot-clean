@@ -28,16 +28,17 @@ def index():
 def health():
     return "OK", 200
 
-@app.route("/chat", methods=["POST"])
+@app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    data = request.get_json()
-    message = data.get("message", "").strip()
+    if request.method == 'GET':
+        return "Chatbot API - Use POST with JSON {'message': 'hello'}"
     
-    if not message:
-        return jsonify({"answer": "Please enter a message.", "suggestions": []})
-    
-    response = find_response(message)
-    return jsonify(response)
+    if request.method == 'POST':
+        data = request.json
+        user_message = data.get('message', '')
+        response = find_response(user_message)
+        return jsonify({'response': response})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
