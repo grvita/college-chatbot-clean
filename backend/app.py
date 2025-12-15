@@ -33,11 +33,22 @@ def chat():
     if request.method == 'GET':
         return "Chatbot API - Use POST with JSON {'message': 'hello'}"
     
-    if request.method == 'POST':
-        data = request.json
-        user_message = data.get('message', '')
-        response = find_response(user_message)
-        return jsonify({'response': response})
+    # POST request from frontend
+    data = request.get_json()  # ← Use get_json() not request.json
+    if not data:
+        return jsonify({'error': 'No JSON data'}), 400
+    
+    message = data.get('message', '')
+    if not message:
+        return jsonify({'error': 'No message provided'}), 400
+    
+    try:
+        response = find_response(message)
+    except Exception as e:
+        return jsonify({'error': f'Chat error: {str(e)}'})
+    
+    return jsonify({'response': response})
+
 
 
 if __name__ == "__main__":
