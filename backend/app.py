@@ -21,13 +21,7 @@ def index():
     </html>
     """
 
-# CHATBOT API (your frontend calls this)
-@app.route('/chat', methods=['POST'])
-def chat():
-    data = request.json
-    user_message = data.get('message', '')
-    response = find_response(user_message)
-    return jsonify({'response': response})
+
 
 # HEALTH CHECK (Render uses this)
 @app.route('/health')
